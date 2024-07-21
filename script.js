@@ -9,7 +9,7 @@ for (const todo of savedTodos) {
 }
 function addTodo() {
   const todoText = todoInput.value.trim();
-  if (todoText === "") return;
+  if (todoText === "") return alert("Lütfen toDo Giriniz");
 
   const todo = {
     id: Date.now(),
