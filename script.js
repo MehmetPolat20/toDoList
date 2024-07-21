@@ -1,7 +1,8 @@
 const todoInput = document.getElementById("todoInput");
 const todoList = document.getElementById("todoList");
 
-const savedTodos = JSON.parse(localStorage.getItem("todos") || []);
+const savedTodosJSON = localStorage.getItem("todos");
+const savedTodos = savedTodosJSON ? JSON.parse(savedTodosJSON) : [];
 
 for (const todo of savedTodos) {
   addTodoList(todo);
@@ -23,7 +24,36 @@ function addTodo() {
 
 function toggleComplete(id) {
   const todo = savedTodos.find((todo) => todo.id === id);
-  todo.completed
+  todo.completed = !todo.completed;
+
+  localStorage.setItem("todos", JSON.stringify(savedTodos));
+  const todoElement = document.getElementById(id);
+  todoElement.classList.toggle("completed", todo.completed);
+}
+
+function editTodo(id) {
+  const todo = savedTodos.find((todo) => todo.id === id);
+  const newText = prompt("Görevi Düzenleyin: ", todo.text);
+  if (newText !== null) {
+    todo.text = newText.trim();
+    localStorage.setItem("todos", JSON.stringify(savedTodos));
+    const todoElement = document.getElementById(id);
+    todoElement.querySelector("span").textContent = newText;
+  }
+}
+
+function removeTodo(id) {
+  const todoElement = document.getElementById(id);
+  todoElement.style.animation = "fadeOut 0.3s ease";
+
+  setTimeout(() => {
+    savedTodos.splice(
+      savedTodos.findIndex((todo) => todo.id === id),
+      1
+    );
+    localStorage.setItem("todos", JSON.stringify(savedTodos));
+    todoElement.remove();
+  }, 300);
 }
 
 function addTodoList(todo) {
