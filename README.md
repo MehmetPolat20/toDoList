@@ -14,7 +14,8 @@ This project is a Todo List application made persistent using local storage. Its
 - Javascript
 
 ## Preview 
-![1](https://github.com/user-attachments/assets/1dc7ab4d-263d-4bde-8f27-21a3a9adad97)
+![23](https://github.com/user-attachments/assets/4d4bba7c-b80e-4eb1-9350-048cdc2699e0)
+
 
 
 ## For your questions and suggestions
